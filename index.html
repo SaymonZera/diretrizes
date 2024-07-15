@@ -58,7 +58,7 @@
         .social-icons a:hover {
             color: #007bff; /* cor do link quando passar o mouse */
         }
-        .message {
+        .copied-message {
             position: absolute;
             top: -40px; /* Ajuste a posição conforme necessário */
             left: 50%;
@@ -78,6 +78,22 @@
             90% { opacity: 1; }
             100% { opacity: 0; }
         }
+
+        /* Media queries para responsividade */
+        @media only screen and (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            .social-icons a {
+                font-size: 1.2em;
+            }
+        }
+
+        @media only screen and (max-width: 400px) {
+            .container {
+                max-width: 90%;
+            }
+        }
     </style>
     <script>
         function copyEmail() {
@@ -85,7 +101,10 @@
             navigator.clipboard.writeText(email)
                 .then(function() {
                     var copiedMessage = document.getElementById("copied-message");
-                    showMessage(copiedMessage);
+                    copiedMessage.style.display = "block";
+                    setTimeout(function() {
+                        copiedMessage.style.display = "none";
+                    }, 2000); // Exibe a mensagem por 2 segundos
                 })
                 .catch(function(err) {
                     console.error('Falha ao copiar: ', err);
@@ -96,13 +115,9 @@
             var discordUrl = "https://discord.gg/CVzKbPPsEc";
             window.open(discordUrl, "_blank");
             var discordMessage = document.getElementById("discord-message");
-            showMessage(discordMessage);
-        }
-
-        function showMessage(element) {
-            element.style.display = "block";
+            discordMessage.style.display = "block";
             setTimeout(function() {
-                element.style.display = "none";
+                discordMessage.style.display = "none";
             }, 2000); // Exibe a mensagem por 2 segundos
         }
     </script>
@@ -132,18 +147,18 @@
         <p>Vale ressaltar que todas as normas acima têm consequências severas. Somos rígidos e acreditamos no potencial de melhoria de cada um. Podemos oferecer chances, porém, violações resultarão em registros negativos em seu histórico. Em caso de reincidência, as punições podem variar de temporárias a permanentes. Além disso, as normas estão sujeitas a atualizações. Nos esforçaremos para notificar quaisquer mudanças marcando menções, portanto, recomendamos estar atento para evitar mal-entendidos ou acusações infundadas.</p>
         
         <p>Para mais informações, entre em contato conosco através de nosso servidor Discord ou fórum oficial.</p>
-
+    </div>
+    <div class="footer">
+        <div class="copied-message" id="copied-message">E-mail copiado!</div>
+        <div class="copied-message" id="discord-message">Discord aberto!</div>
+        
+        <p>&copy; 2024 Diretrizes da AuroraMC - Todos os direitos são reservados.</p>
+        
         <div class="social-icons">
-            <a href="https://discord.gg/CVzKbPPsEc" target="_blank" onclick="openDiscord(); return false;">Discord</a>
+            <a href="https://discord.gg/CVzKbPPsEc" target="_blank">Discord</a>
             <a href="#" onclick="copyEmail(); return false;">Email</a>
             <!-- Adicione mais ícones de redes sociais conforme necessário -->
         </div>
-    </div>
-    <div class="footer">
-        <div id="copied-message" class="message">E-mail copiado!</div>
-        <div id="discord-message" class="message">Discord aberto!</div>
-        
-        <p>&copy; 2024 Diretrizes da AuroraMC - Todos os direitos são reservados.</p>
     </div>
 </body>
 </html>
