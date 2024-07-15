@@ -58,7 +58,7 @@
         .social-icons a:hover {
             color: #007bff; /* cor do link quando passar o mouse */
         }
-        .copied-message, .discord-message {
+        .message {
             position: absolute;
             top: -40px; /* Ajuste a posição conforme necessário */
             left: 50%;
@@ -85,10 +85,7 @@
             navigator.clipboard.writeText(email)
                 .then(function() {
                     var copiedMessage = document.getElementById("copied-message");
-                    copiedMessage.style.display = "block";
-                    setTimeout(function() {
-                        copiedMessage.style.display = "none";
-                    }, 2000); // Exibe a mensagem por 2 segundos
+                    showMessage(copiedMessage);
                 })
                 .catch(function(err) {
                     console.error('Falha ao copiar: ', err);
@@ -99,9 +96,13 @@
             var discordUrl = "https://discord.gg/CVzKbPPsEc";
             window.open(discordUrl, "_blank");
             var discordMessage = document.getElementById("discord-message");
-            discordMessage.style.display = "block";
+            showMessage(discordMessage);
+        }
+
+        function showMessage(element) {
+            element.style.display = "block";
             setTimeout(function() {
-                discordMessage.style.display = "none";
+                element.style.display = "none";
             }, 2000); // Exibe a mensagem por 2 segundos
         }
     </script>
@@ -133,14 +134,14 @@
         <p>Para mais informações, entre em contato conosco através de nosso servidor Discord ou fórum oficial.</p>
 
         <div class="social-icons">
-            <a href="https://discord.gg/CVzKbPPsEc" target="_blank">Discord</a>
+            <a href="https://discord.gg/CVzKbPPsEc" target="_blank" onclick="openDiscord(); return false;">Discord</a>
             <a href="#" onclick="copyEmail(); return false;">Email</a>
             <!-- Adicione mais ícones de redes sociais conforme necessário -->
         </div>
     </div>
     <div class="footer">
-        <div class="copied-message" id="copied-message">E-mail copiado!</div>
-        <div class="discord-message" id="discord-message">Discord aberto!</div>
+        <div id="copied-message" class="message">E-mail copiado!</div>
+        <div id="discord-message" class="message">Discord aberto!</div>
         
         <p>&copy; 2024 Diretrizes da AuroraMC - Todos os direitos são reservados.</p>
     </div>
