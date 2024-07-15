@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diretrizes do Servidor</title>
     <style>
+        /* Estilos globais */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f0f0;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
+            color: #333;
         }
         .container {
             max-width: 800px;
@@ -19,29 +22,27 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        h1 {
-            color: #333;
+        h1, h2 {
             text-align: center;
-            margin-bottom: 20px;
         }
         h2 {
-            color: #555;
-            font-size: 1.2em;
+            color: #007bff;
+            font-size: 1.5em;
             margin-top: 20px;
         }
         ul {
-            list-style-type: disc;
             margin-left: 20px;
-            margin-bottom: 20px;
+            list-style-type: none;
+            padding-left: 0;
         }
-        p {
-            line-height: 1.6;
-            color: #666;
+        li {
+            margin-bottom: 10px;
         }
         .footer {
             text-align: center;
             margin-top: 20px;
             color: #888;
+            position: relative;
         }
         .social-icons {
             margin-top: 20px;
@@ -49,19 +50,42 @@
         }
         .social-icons a {
             display: inline-block;
-            margin: 0 10px;
-            color: #555;
-            font-size: 1.5em;
+            margin: 0 15px;
+            color: #007bff;
+            font-size: 1.8em;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         .social-icons a:hover {
-            color: #007bff; /* cor do link quando passar o mouse */
+            color: #0056b3;
         }
         .copied-message {
-            display: none;
-            color: green;
-            font-weight: bold;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 123, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 0.9em;
             animation: fadeInOut 2s ease-in-out;
+            display: none;
+            z-index: 1000;
+        }
+        .error-message {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #dc3545;
+            padding: 8px 15px;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 0.9em;
+            animation: fadeInOut 2s ease-in-out;
+            display: none;
+            z-index: 1000;
         }
         @keyframes fadeInOut {
             0% { opacity: 0; }
@@ -76,14 +100,41 @@
             navigator.clipboard.writeText(email)
                 .then(function() {
                     var copiedMessage = document.getElementById("copied-message");
-                    copiedMessage.style.display = "inline-block";
+                    copiedMessage.style.display = "block";
                     setTimeout(function() {
                         copiedMessage.style.display = "none";
                     }, 2000); // Exibe a mensagem por 2 segundos
                 })
                 .catch(function(err) {
                     console.error('Falha ao copiar: ', err);
+                    var errorMessage = document.getElementById("copy-error-message");
+                    errorMessage.style.display = "block";
+                    setTimeout(function() {
+                        errorMessage.style.display = "none";
+                    }, 2000); // Exibe a mensagem de erro por 2 segundos
                 });
+        }
+
+        function openDiscord() {
+            var discordUrl = "https://discord.gg/seudiscord";
+            window.open(discordUrl, "_blank");
+            var discordMessage = document.getElementById("discord-message");
+            discordMessage.style.display = "block";
+            setTimeout(function() {
+                discordMessage.style.display = "none";
+            }, 2000); // Exibe a mensagem por 2 segundos
+        }
+
+        function openDiscordWithErrorHandling() {
+            var discordUrl = "https://discord.gg/seudiscord";
+            var opened = window.open(discordUrl, "_blank");
+            if (!opened || opened.closed || typeof opened.closed == 'undefined') {
+                var errorMessage = document.getElementById("discord-error-message");
+                errorMessage.style.display = "block";
+                setTimeout(function() {
+                    errorMessage.style.display = "none";
+                }, 2000); // Exibe a mensagem de erro por 2 segundos
+            }
         }
     </script>
 </head>
@@ -91,7 +142,7 @@
     <div class="container">
         <h1>Normas do Servidor</h1>
         
-        <h2>Comunicação e Comportamento:</h2>
+        <h2>Comunicação e Comportamento</h2>
         <ul>
             <li>Condutas prejudiciais e desrespeitosas são proibidas.</li>
             <li>Uso inadequado de linguagem, spam e discriminação são proibidos.</li>
@@ -100,7 +151,7 @@
             <li>Interrupção de eventos ou competições e comportamentos que prejudiquem a comunidade são proibidos.</li>
         </ul>
         
-        <h2>Jogo:</h2>
+        <h2>Jogo</h2>
         <ul>
             <li>Uso de cheats ou modificações não autorizadas é proibido.</li>
             <li>Uso de exploits ou bugs para obter vantagens indevidas é proibido.</li>
@@ -114,15 +165,19 @@
         <p>Para mais informações, entre em contato conosco através de nosso servidor Discord ou fórum oficial.</p>
     </div>
     <div class="footer">
+        <div class="copied-message" id="copied-message">E-mail copiado!</div>
+        <div class="error-message" id="copy-error-message">Falha ao copiar o e-mail!</div>
+        <div class="copied-message" id="discord-message">Discord aberto!</div>
+        <div class="error-message" id="discord-error-message">Falha ao abrir o Discord!</div>
+        
         <p>&copy; 2024 Diretrizes da AuroraMC - Todos os direitos são reservados.</p>
         
         <div class="social-icons">
-            <a href="https://discord.gg/TFfXmS5D" target="_blank">Discord</a>
-            <a href="dolphinsaymon@gmail.com" onclick="copyEmail(); return false;">Email</a>
+            <a href="https://discord.gg/CVzKbPPsEc" target="_blank">Discord</a>
+            <a href="#" onclick="copyEmail(); return false;">Email</a>
+            <a href="#" onclick="openDiscordWithErrorHandling(); return false;">Discord</a>
             <!-- Adicione mais ícones de redes sociais conforme necessário -->
         </div>
-
-        <div class="copied-message" id="copied-message">E-mail copiado!</div>
     </div>
 </body>
 </html>
