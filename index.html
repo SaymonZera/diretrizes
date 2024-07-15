@@ -95,15 +95,15 @@
                 });
         }
 
-function openDiscord() {
-    var discordUrl = "https://discord.gg/CVzKbPPsEc";
-    window.open(discordUrl, "_blank");
-    var discordMessage = document.getElementById("discord-message");
-    discordMessage.style.display = "block";
-    setTimeout(function() {
-        discordMessage.style.display = "none";
-    }, 2000); // Exibe a mensagem por 2 segundos
-}
+        function openDiscord() {
+            var discordUrl = "https://discord.gg/CVzKbPPsEc";
+            window.open(discordUrl, "_blank");
+            var discordMessage = document.getElementById("discord-message");
+            discordMessage.style.display = "block";
+            setTimeout(function() {
+                discordMessage.style.display = "none";
+            }, 2000); // Exibe a mensagem por 2 segundos
+        }
     </script>
 </head>
 <body>
@@ -131,18 +131,18 @@ function openDiscord() {
         <p>Vale ressaltar que todas as normas acima têm consequências severas. Somos rígidos e acreditamos no potencial de melhoria de cada um. Podemos oferecer chances, porém, violações resultarão em registros negativos em seu histórico. Em caso de reincidência, as punições podem variar de temporárias a permanentes. Além disso, as normas estão sujeitas a atualizações. Nos esforçaremos para notificar quaisquer mudanças marcando menções, portanto, recomendamos estar atento para evitar mal-entendidos ou acusações infundadas.</p>
         
         <p>Para mais informações, entre em contato conosco através de nosso servidor Discord ou fórum oficial.</p>
+
+        <div class="social-icons">
+            <a href="https://discord.gg/CVzKbPPsEc" target="_blank">Discord</a>
+            <a href="#" onclick="copyEmail(); return false;">Email</a>
+            <!-- Adicione mais ícones de redes sociais conforme necessário -->
+        </div>
     </div>
     <div class="footer">
         <div class="copied-message" id="copied-message">E-mail copiado!</div>
         <div class="copied-message" id="discord-message">Discord aberto!</div>
         
         <p>&copy; 2024 Diretrizes da AuroraMC - Todos os direitos são reservados.</p>
-        
-        <div class="social-icons">
-            <a href="https://discord.gg/CVzKbPPsEc" target="_blank">Discord</a>
-            <a href="#" onclick="copyEmail(); return false;">Email</a>
-            <!-- Adicione mais ícones de redes sociais conforme necessário -->
-        </div>
     </div>
 </body>
 </html>
