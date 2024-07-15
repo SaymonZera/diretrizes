@@ -95,32 +95,6 @@
             }
         }
     </style>
-    <script>
-        function copyEmail() {
-            var email = "dolphinsaymon@gmail.com";
-            navigator.clipboard.writeText(email)
-                .then(function() {
-                    var copiedMessage = document.getElementById("copied-message");
-                    copiedMessage.style.display = "block";
-                    setTimeout(function() {
-                        copiedMessage.style.display = "none";
-                    }, 2000); // Exibe a mensagem por 2 segundos
-                })
-                .catch(function(err) {
-                    console.error('Falha ao copiar: ', err);
-                });
-        }
-
-        function openDiscord() {
-            var discordUrl = "https://discord.gg/CVzKbPPsEc";
-            window.open(discordUrl, "_blank");
-            var discordMessage = document.getElementById("discord-message");
-            discordMessage.style.display = "block";
-            setTimeout(function() {
-                discordMessage.style.display = "none";
-            }, 2000); // Exibe a mensagem por 2 segundos
-        }
-    </script>
 </head>
 <body>
     <div class="container">
@@ -160,5 +134,32 @@
             <!-- Adicione mais ícones de redes sociais conforme necessário -->
         </div>
     </div>
+
+    <script>
+        function copyEmail() {
+            var email = "dolphinsaymon@gmail.com";
+            navigator.clipboard.writeText(email)
+                .then(function() {
+                    var copiedMessage = document.getElementById("copied-message");
+                    copiedMessage.style.display = "block";
+                    setTimeout(function() {
+                        copiedMessage.style.display = "none";
+                    }, 2000); // Exibe a mensagem por 2 segundos
+                })
+                .catch(function(err) {
+                    console.error('Falha ao copiar: ', err);
+                });
+        }
+
+        function openDiscord() {
+            var discordUrl = "https://discord.gg/CVzKbPPsEc";
+            window.open(discordUrl, "_blank");
+            var discordMessage = document.getElementById("discord-message");
+            discordMessage.style.display = "block";
+            setTimeout(function() {
+                discordMessage.style.display = "none";
+            }, 2000); // Exibe a mensagem por 2 segundos
+        }
+    </script>
 </body>
 </html>
