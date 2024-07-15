@@ -52,8 +52,40 @@
             margin: 0 10px;
             color: #555;
             font-size: 1.5em;
+            text-decoration: none;
+        }
+        .social-icons a:hover {
+            color: #007bff; /* cor do link quando passar o mouse */
+        }
+        .copied-message {
+            display: none;
+            color: green;
+            font-weight: bold;
+            animation: fadeInOut 2s ease-in-out;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
         }
     </style>
+    <script>
+        function copyEmail() {
+            var email = "seuemail@dominio.com";
+            navigator.clipboard.writeText(email)
+                .then(function() {
+                    var copiedMessage = document.getElementById("copied-message");
+                    copiedMessage.style.display = "inline-block";
+                    setTimeout(function() {
+                        copiedMessage.style.display = "none";
+                    }, 2000); // Exibe a mensagem por 2 segundos
+                })
+                .catch(function(err) {
+                    console.error('Falha ao copiar: ', err);
+                });
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -85,10 +117,12 @@
         <p>&copy; 2024 Diretrizes da AuroraMC - Todos os direitos são reservados.</p>
         
         <div class="social-icons">
-            <a href="https://discord.gg/seudiscord" target="_blank">Discord</a>
-            <a href="mailto:seuemail@dominio.com">Email</a>
+            <a href="https://discord.gg/TFfXmS5D" target="_blank">Discord</a>
+            <a href="dolphinsaymon@gmail.com" onclick="copyEmail(); return false;">Email</a>
             <!-- Adicione mais ícones de redes sociais conforme necessário -->
         </div>
+
+        <div class="copied-message" id="copied-message">E-mail copiado!</div>
     </div>
 </body>
 </html>
